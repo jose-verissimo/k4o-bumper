@@ -1,7 +1,22 @@
 {
   "name": "k4o-bumper",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
+  "author": {
+    "name": "Jose Verissimo",
+    "email": "me@joseverissimo.com",
+    "url": "https://joseverissimo.com"
+  },
+  "maintainers": [
+    {
+      "name": "Jose Verissimo",
+      "email": "me@joseverissimo.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jose-verissimo/k4o-bumper"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -10,7 +25,6 @@
     "k4o-bumper": "./index.js"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "semver": "^7.3.7"
