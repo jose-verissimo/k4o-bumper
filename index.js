@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 const semver = require('semver');
 const fs = require('fs');
-const package = require('./package.json');
+const package = require(`${process.cwd()}/package.json`);
+const packageLock = require(`${process.cwd()}/package-lock.json`);
 
 const getVersion = () => {
   const patchArg = process.argv.slice(2).find(arg => arg.startsWith('--patch'));
@@ -30,16 +31,18 @@ const getVersion = () => {
 }
 
 const changeVersion = (version) => {
-  package.version = version;
-
+  
   try {
+    package.version = version;
+    packageLock.version = version;
+
     // Write new version to package.json
     fs.writeFileSync(`${process.cwd()}/package.json`, JSON.stringify(package, null, 2));
   
     // Write new version to package-lock.json
-    fs.writeFileSync(`${process.cwd()}/package-lock.json`, JSON.stringify(package, null, 2));
+    fs.writeFileSync(`${process.cwd()}/package-lock.json`, JSON.stringify(packageLock, null, 2));
   } catch (error) {
-    console.error('Error writing new version to package.json, either files do not exist or are not writable');
+    console.error('Error writing new version to package.json or package-lock.json, either files do not exist or are not writable');
   }
   
   // Modify version in ./helm/values/values.yaml
